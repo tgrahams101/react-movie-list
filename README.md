@@ -1,4 +1,4 @@
-# Movie List App
+# React.js Movie List App
 
 > Shows a list of all currently playing movies in theaters!
 
