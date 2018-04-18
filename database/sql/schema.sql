@@ -11,5 +11,6 @@ USE movies;
 CREATE TABLE movies (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(255),
-  description VARCHAR(2555)
+  description VARCHAR(2555),
+  poster_url VARCHAR(1000)
 );
