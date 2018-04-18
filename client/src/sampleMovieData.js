@@ -14,8 +14,6 @@ const movies = [
 ]
 
 export const add = ({title, description}) => {
-  console.log(title);
-  console.log(description);
   movies.push({title, description});
 }
 

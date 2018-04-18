@@ -7,17 +7,17 @@ class Search extends React.Component {
     this.state = {
       searchQuery : ''
     }
-    
+
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
-    console.log(event.target.value);
     this.setState({searchQuery: event.target.value});
   }
 
   handleClick() {
+    console.log('THIS IS', this.state.searchQuery);
     this.props.filter(this.state.searchQuery);
   }
 
@@ -29,9 +29,6 @@ class Search extends React.Component {
       </div>
     )
   }
-
-
-
 }
 
 export default Search;

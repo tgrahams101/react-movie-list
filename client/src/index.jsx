@@ -11,10 +11,11 @@ class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      original: null,
       movies: null,
       showWatched: null
     };
-    this.filter = this.filter.bind(this, movies);
+    this.filter = this.filter.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.toggleWatched = this.toggleWatched.bind(this);
     this.showMovies = this.showMovies.bind(this);
@@ -23,47 +24,38 @@ class MovieList extends React.Component {
   componentDidMount() {
     axios.get('http://localhost:3000/movies')
       .then( (response) => {
-        console.log('RESULTS FROM AXIOS CALL', response.data);
         this.setState({movies: response.data});
+        this.setState({original: response.data});
 
       })
       .catch( (error) => {
-        console.log('ERROR FROM AXIOS CALL', error);
       })
   }
 
-  filter(list, query) {
-    console.log(movies);
-    let movies = list.filter( (item) => {
-      if (item.title.toLowerCase().includes(query.toLowerCase())) {
+  filter(query) {
+    let movies = this.state.original.filter( (item) => {
+      if (item.title.toLowerCase().includes(query.toLowerCase()) ) {
         return true;
       }
       return false;
     })
     if (!movies.length) {
-      this.setState({movies: list});
+      this.setState({movies: this.state.original});
     } else {
       this.setState({movies: movies})
     }
   }
 
   addMovie(movie) {
-    console.log('HITTING THE ADDMOVIE', movie);
     let {title, description} = movie;
-    console.log(title, description);
-    console.log('AS OBJECT', {title, description});
-    //OLD ADD METHOD THAT USED A FILE ON CLIENT SIDE TO STORE TEMP DATA
-    // add({title, description});
+
     axios.post('http://localhost:3000/movie', movie)
       .then((results) => {
-        console.log('SUCCESSFUL AXIOS POST', results);
         this.setState({movies: results.data})
       })
       .catch( (error) => {
-        console.log('ERROR FROM ADDMOVIE POST', error);
       })
 
-    console.log(movies);
     this.setState({movies: movies});
   }
 
@@ -86,7 +78,6 @@ class MovieList extends React.Component {
     } else {
       return null;
     }
-
   }
 
   render() {
