@@ -19,7 +19,7 @@ db.connectAsync()
     console.log('successfully connected!')
   })
   .catch((error) => {
-    console.log('ERROR IN CONNECTING', error)
+    console.log('error in connecting', error)
   });
 
   module.exports = db;

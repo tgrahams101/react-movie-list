@@ -13,11 +13,9 @@ class AddMovie extends React.Component {
     this.handleChangeDesc = this.handleChangeDesc.bind(this);
   }
   handleChange(event) {
-    console.log(event.target.value);
     this.setState({titleToAdd: event.target.value});
   }
   handleChangeDesc(event) {
-    console.log(event.target.value);
     this.setState({descriptionToAdd: event.target.value});
   }
 

@@ -9,5 +9,4 @@ return  (<div>
   )
 }
 
-
 export default MovieDetails;
