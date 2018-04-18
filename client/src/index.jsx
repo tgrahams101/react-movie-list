@@ -88,18 +88,20 @@ class MovieList extends React.Component {
      </div>
       <div>
         <Search filter={this.filter} />
+        <button onClick={this.toggleWatched.bind(null, true)}> Show Watched </button>
+        <button onClick={this.toggleWatched.bind(null, false)}> Show Not-Watched </button>
+        <button onClick={this.toggleWatched.bind(null, null)}> Show All </button>
       </div>
       <div>
-      <button onClick={this.toggleWatched.bind(null, true)}> Show Watched </button> <button onClick={this.toggleWatched.bind(null, false)}> Show Not-Watched </button> <button onClick={this.toggleWatched.bind(null, null)}> Show All </button>
-      {(() => {
-        if (this.state.movies) {
-          return this.state.movies.map( (item, index) => {
-             return <Movie movie={item} key={index} toggleWatched={this.state.showWatched}/>
-          })
-        } else {
-          return null;
-        }
-      })() }
+        {(() => {
+          if (this.state.movies) {
+            return this.state.movies.map( (item, index) => {
+               return <Movie movie={item} key={index} toggleWatched={this.state.showWatched}/>
+            })
+          } else {
+            return null;
+          }
+        })() }
       </div>
     </div>)
   }

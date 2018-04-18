@@ -1,4 +1,12 @@
 .movieBlock {
   border: 1px solid black;
   margin-bottom: 20px;
+  min-width: 30%;
+  max-width: 400px;
+  display: inline-block;
+}
+
+#header {
+  margin: 0 auto;
+  text-align: center;
 }

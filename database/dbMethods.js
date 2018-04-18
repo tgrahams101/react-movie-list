@@ -1,10 +1,10 @@
 const db = require('./index.js');
 
-const insertIntoDB = ({title, description}) => {
+const insertIntoDB = ({title, description, poster_url}) => {
   return new Promise ( (resolve, reject) => {
     description = description.replace(/"/g, '\\"');
 
-    let query =  `INSERT INTO movies (title, description) VALUES ("${title}", "${description}")`;
+    let query =  `INSERT INTO movies (title, description, poster_url) VALUES ("${title}", "${description}", "${poster_url}")`;
 
     db.queryAsync(query)
     .then( (success) => {

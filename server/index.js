@@ -23,6 +23,7 @@ app.get('/movies', async (req, res) => {
             let obj = {};
             obj.title = object.title;
             obj.description = object.description;
+            obj.poster_url = object.poster_url;
             return obj;
           });
 
@@ -67,12 +68,13 @@ app.get('/load', async (req, res) => {
   try {
     let results = await getMoviesFromAPI();
     let movies = results.map( (element) => {
-       let {title, overview} = element;
-       return {title, description: overview};
+       let {title, overview, poster_path} = element;
+       return {title, description: overview, poster_url: poster_path};
      });
+     
     try {
-      let completedArray = await Promise.all(movies.map( ({title, description}) => {
-            return dbMethods.insertIntoDB({title, description});
+      let completedArray = await Promise.all(movies.map( ({title, description, poster_url}) => {
+            return dbMethods.insertIntoDB({title, description, poster_url });
       }))
       res.json(movies);
     } catch(error) {
